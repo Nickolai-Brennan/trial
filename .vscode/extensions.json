@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "charliermarsh.ruff",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "humao.rest-client",
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "mikestead.dotenv",
+    "davidanson.vscode-markdownlint",
+    "vitest.explorer"
+  ]
+}
