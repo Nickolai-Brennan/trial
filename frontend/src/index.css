@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .prose-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4;
+  }
+
+  .prose-content p {
+    @apply leading-7 mb-4;
+  }
+
+  .prose-content a {
+    @apply text-brand-600 hover:underline;
+  }
+}
