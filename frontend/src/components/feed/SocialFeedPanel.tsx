@@ -6,7 +6,8 @@ interface SocialEmbed {
   caption?: string
 }
 
-const mockEmbeds: SocialEmbed[] = [
+// TODO: Replace with real social media API integrations (Twitter/X, Instagram, YouTube)
+const placeholderEmbeds: SocialEmbed[] = [
   { platform: 'twitter', embedId: 'sample-tweet', caption: 'Trending on X' },
   { platform: 'instagram', embedId: 'sample-post', caption: 'Featured post' },
   { platform: 'youtube', embedId: 'dQw4w9WgXcQ', caption: 'Watch now' },
@@ -61,7 +62,7 @@ export default function SocialFeedPanel() {
       <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
         Social Highlights
       </h2>
-      {mockEmbeds.map((embed, i) => (
+      {placeholderEmbeds.map((embed, i) => (
         <SocialCard key={i} embed={embed} />
       ))}
     </aside>

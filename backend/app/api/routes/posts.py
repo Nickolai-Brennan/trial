@@ -2,7 +2,7 @@ import math
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import func, or_, select
+from sqlalchemy import delete, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -131,7 +131,8 @@ async def create_post(
         db.add(PostTag(post_id=post.id, tag_id=tag_id))
 
     await db.commit()
-    return await _get_post_or_404(post.id, db)  # type: ignore[return-value]
+    post_read = await _get_post_or_404(post.id, db)
+    return _post_to_read(post_read)
 
 
 @router.patch("/{post_id}", response_model=PostRead)
@@ -153,14 +154,13 @@ async def update_post(
         post.published_at = datetime.now(UTC)
 
     if tag_ids is not None:
-        await db.execute(
-            PostTag.__table__.delete().where(PostTag.post_id == post_id)  # type: ignore[attr-defined]
-        )
+        await db.execute(delete(PostTag).where(PostTag.post_id == post_id))
         for tag_id in tag_ids:
             db.add(PostTag(post_id=post_id, tag_id=tag_id))
 
     await db.commit()
-    return await _get_post_or_404(post_id, db)  # type: ignore[return-value]
+    post_read = await _get_post_or_404(post_id, db)
+    return _post_to_read(post_read)
 
 
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)

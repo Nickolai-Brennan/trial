@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text, func
 from sqlalchemy.orm import relationship
@@ -44,7 +44,7 @@ class Post(Base):
     updated_at = Column(
         DateTime(timezone=True),
         server_default=func.now(),
-        onupdate=datetime.utcnow,
+        onupdate=lambda: datetime.now(UTC),
         nullable=False,
     )
 
